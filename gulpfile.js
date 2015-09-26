@@ -8,7 +8,7 @@ var babel = require('gulp-babel');
 var watch = require('gulp-watch');
 var del = require('del');
 
-var src = {
+var sourceFiles = {
   allHtml: './src/**/*.html',
   allJs: './src/**/*.js',
   allFont: './src/**/*.{ttf,woff,otf,eot}',
@@ -21,23 +21,23 @@ gulp.task('default', ['clean'], function() {
 });
 
 gulp.task('watch', function() {
-  watch(src.allHhtml, function() {
+  watch(sourceFiles.allHhtml, function() {
     gulp.start('html');
   });
   
-  watch(src.allJs, function() {
+  watch(sourceFiles.allJs, function() {
     gulp.start('js');
   });
   
-  watch(src.allScss, function() {
+  watch(sourceFiles.allScss, function() {
     gulp.start('scss');
   });
   
-  watch(src.allImg, function() {
+  watch(sourceFiles.allImg, function() {
     gulp.start('img');
   });
   
-  watch(src.allFont, function() {
+  watch(sourceFiles.allFont, function() {
     gulp.start('font');
   });
 });
