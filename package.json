@@ -1,0 +1,19 @@
+{
+  "name": "gulp-base",
+  "version": "0.0.1",
+  "description": "A baseline gulp file to use as a strating point on all projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leeallen337/gulp-base.git"
+  },
+  "author": "lee allen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leeallen337/gulp-base/issues"
+  },
+  "homepage": "https://github.com/leeallen337/gulp-base#readme"
+}
