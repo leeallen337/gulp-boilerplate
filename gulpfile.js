@@ -12,3 +12,29 @@ var sourceFiles = {
   allScss:  './src/**/*.scss'
 };
 
+gulp.task('default', ['clean'], function() {
+  return gulp.start('serve', 'watch', 'reload')
+});
+
+gulp.task('serve', function() {
+  connect.server({
+    root: './dist',
+    port: 8000,
+    livereload: true
+  });
+});
+
+gulp.task('watch', function() {
+  watch(sourceFiles.allHtml, function() {
+    gulp.start('html');
+  });
+  
+  watch(sourceFiles.allJs, function() {
+    gulp.start('js');
+  });
+  
+  watch(sourceFiles.allScss, function() {
+    gulp.start('scss');
+  });
+});
+
