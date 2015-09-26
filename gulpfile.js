@@ -4,6 +4,7 @@ var ghPages = require('gulp-gh-pages');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
+var babel = require('gulp-babel');
 
 gulp.task('default', ['watch', 'serve']);
 
