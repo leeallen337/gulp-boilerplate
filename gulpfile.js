@@ -38,3 +38,10 @@ gulp.task('watch', function() {
   });
 });
 
+gulp.task('reload', function() {
+  watch('./dist/**/*', function() {
+    gulp.src('./dist/**/*')
+      .pipe(connect.reload());
+  });
+});
+
