@@ -1,3 +1,4 @@
+// Import all packages needed
 var gulp = require('gulp');
 var connect = require('gulp-connect');
 var ghPages = require('gulp-gh-pages');
@@ -6,37 +7,16 @@ var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var babel = require('gulp-babel');
 
-gulp.task('default', ['watch', 'serve']);
+// Common patterns used throughout the gulp configuration
+var src = {
+  allHTML: './src/**/*.html',
+  allJs: './src/**/*.js',
+  allFont: './src/**/*.{ttf,woff,otf,eot}',
+  allScss: './src/**/*.scss',
+  allImg: './src/**/*.{jpg,png,svg,gif,ico}'
+}
 
-gulp.task('serve', function() {
-  connect.server({
-    root: './src',
-    port: 8000,
-    livereload: true
-  });
+// The default task is what runs when you type 'npm run gulp' in the terminal
+gulp.task('default', ['clean'], function() {
+  return gulp.start('html', 'img', 'font', 'js:view', 'js:vendor', 'js', 'scss', 'watch', 'reload', 'serve');
 });
-
-gulp.task('watch', function() {
-  gulp.watch('./src/**/*', ['reload']);
-});
-
-gulp.task('reload', function() {
-  gulp.src('./src/**/*')
-    .pipe(connect.reload());
-});
-
-gulp.task('deploy', function() {
-  return gulp.src('./src/**/*')
-    .pipe(ghPages());
-});
-
-gulp.task('css', function() {
-  return gulp.src('./src/css/main.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(rename('main.css'))
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
-      cascade: false
-    }))
-    .pipe(gulp.dest('./src/css'));
-})
