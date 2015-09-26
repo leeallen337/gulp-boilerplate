@@ -20,11 +20,13 @@ gulp.task('watch', function() {
 });
 
 gulp.task('reload', function() {
-  gulp.src('./src/**/*').pipe(connect.reload());
+  gulp.src('./src/**/*')
+    .pipe(connect.reload());
 });
 
 gulp.task('deploy', function() {
-  return gulp.src('./src/**/*').pipe(ghPages());
+  return gulp.src('./src/**/*')
+    .pipe(ghPages());
 });
 
 gulp.task('css', function() {
