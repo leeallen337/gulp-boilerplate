@@ -45,3 +45,25 @@ gulp.task('reload', function() {
   });
 });
 
+gulp.task('scss', function() {
+  return gulp.src('.src/css/main.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(rename('main.css'))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
+    .pipe(gulp.dest('./dist/css'));
+});
+
+gulp.task('html', function() {
+  return gulp.src(sourceFiles.allHtml)
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('js', function() {
+  return gulp.src(sourceFiles.allJs)
+    .pipe(babel())
+    .pipe(rename('app.js'))
+    .pipe(gulp.dest('./dist/js'));
+});
