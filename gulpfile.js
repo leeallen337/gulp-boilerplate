@@ -8,7 +8,7 @@ var babel = require('gulp-babel');
 var watch = require('gulp-watch');
 var del = require('del');
 
-\var src = {
+var src = {
   allHtml: './src/**/*.html',
   allJs: './src/**/*.js',
   allFont: './src/**/*.{ttf,woff,otf,eot}',
