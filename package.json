@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/leeallen337/gulp-base#readme",
   "devDependencies": {
+    "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.2",
     "gulp-babel": "^5.2.1",
