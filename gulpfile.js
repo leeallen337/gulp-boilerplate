@@ -4,17 +4,26 @@ var babel = require('gulp-babel');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
+var concat = require('gulp-concat');
 var del = require('del');
-var watch = require('gulp-watch');
 
 var sourceFiles = {
-  allHtml:  './src/**/*.html',
-  allJs:    './src/**/*.js',
-  allScss:  './src/**/*.scss'
+  allHtml:  'src/**/*.html',
+  allJs:    'src/**/*.js',
+  allScss:  'src/**/*.scss'
 };
 
-gulp.task('default', ['clean'], function() {
-  return gulp.start('serve', 'watch', 'reload', 'scss', 'html', 'js');
+gulp.task('default', ['build', 'watch', 'serve']);
+
+gulp.task('build', ['clean'], function() {
+  gulp.start(['js', 'scss', 'html']);
+});
+
+gulp.task('watch', function() {
+  gulp.watch(sourceFiles.allHtml, ['html']);
+  gulp.watch(sourceFiles.allJs, ['js']);
+  gulp.watch(sourceFiles.allScss, ['scss']);
+  gulp.watch('dist/**/*', ['reload']);
 });
 
 gulp.task('serve', function() {
@@ -25,48 +34,31 @@ gulp.task('serve', function() {
   });
 });
 
-gulp.task('watch', function() {
-  watch(sourceFiles.allHtml, function() {
-    gulp.start('html');
-  });
-  
-  watch(sourceFiles.allJs, function() {
-    gulp.start('js');
-  });
-  
-  watch(sourceFiles.allScss, function() {
-    gulp.start('scss');
-  });
-});
-
 gulp.task('reload', function() {
-  watch('./dist/**/*', function() {
-    gulp.src('./dist/**/*')
-      .pipe(connect.reload());
-  });
+  gulp.src('dist/**/*').pipe(connect.reload());
 });
 
 gulp.task('scss', function() {
-  return gulp.src('./src/css/main.scss')
+  return gulp.src('src/css/main.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(rename('main.css'))
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
       cascade: false
     }))
-    .pipe(gulp.dest('./dist/css'));
+    .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('html', function() {
   return gulp.src(sourceFiles.allHtml)
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('js', function() {
   return gulp.src(sourceFiles.allJs)
     .pipe(babel())
-    .pipe(rename('app.js'))
-    .pipe(gulp.dest('./dist/js'));
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('clean', function(cb) {
