@@ -5,6 +5,7 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var del = require('del');
+var watch = require('gulp-watch');
 
 var sourceFiles = {
   allHtml:  './src/**/*.html',
@@ -25,15 +26,21 @@ gulp.task('serve', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(sourceFiles.allHtml, ['html']);
+  watch(sourceFiles.allHtml, function() {
+    gulp.start('html');
+  });
   
-  gulp.watch(sourceFiles.allJs, ['js']);
+  watch(sourceFiles.allJs, function() {
+    gulp.start('js');
+  });
   
-  gulp.watch(sourceFiles.allScss, ['scss']);
+  watch(sourceFiles.allScss, function() {
+    gulp.start('scss');
+  });
 });
 
 gulp.task('reload', function() {
-  gulp.watch('./dist/**/*', function() {
+  watch('./dist/**/*', function() {
     gulp.src('./dist/**/*')
       .pipe(connect.reload());
   });
