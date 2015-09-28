@@ -70,5 +70,5 @@ gulp.task('js', function() {
 });
 
 gulp.task('clean', function(cb) {
-  del('./dist', cb);
+  return del('./dist', cb);
 });
