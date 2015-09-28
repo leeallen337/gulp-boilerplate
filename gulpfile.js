@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect');
 var babel = require('gulp-babel');
-var watch = require('gulp-watch');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
@@ -26,21 +25,15 @@ gulp.task('serve', function() {
 });
 
 gulp.task('watch', function() {
-  watch(sourceFiles.allHtml, function() {
-    gulp.start('html');
-  });
+  gulp.watch(sourceFiles.allHtml, ['html']);
   
-  watch(sourceFiles.allJs, function() {
-    gulp.start('js');
-  });
+  gulp.watch(sourceFiles.allJs, ['js']);
   
-  watch(sourceFiles.allScss, function() {
-    gulp.start('scss');
-  });
+  gulp.watch(sourceFiles.allScss, ['scss']);
 });
 
 gulp.task('reload', function() {
-  watch('./dist/**/*', function() {
+  gulp.watch('./dist/**/*', function() {
     gulp.src('./dist/**/*')
       .pipe(connect.reload());
   });
