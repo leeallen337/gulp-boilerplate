@@ -1,6 +1,6 @@
 #Gulp Base
 
-This is a boilerplate Gulp file that can hopefully be used as a starting point with minimal adjustments.
+This is a boilerplate Gulp file that can hopefully be used as a starting point for any project.
 
 The following plugins are installed:
 
@@ -12,3 +12,4 @@ The following plugins are installed:
 * [gulp-concat](https://www.npmjs.com/package/gulp-concat/)
 * [del](https://www.npmjs.com/package/del)
 * [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages/)
+
