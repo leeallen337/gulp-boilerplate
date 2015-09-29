@@ -6,6 +6,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var del = require('del');
+var ghPages = require('gulp-gh-pages');
 
 var sourceFiles = {
   allHtml:  'src/**/*.html',
@@ -35,7 +36,8 @@ gulp.task('serve', function() {
 });
 
 gulp.task('reload', function() {
-  gulp.src('dist/**/*').pipe(connect.reload());
+  gulp.src('dist/**/*')
+    .pipe(connect.reload());
 });
 
 gulp.task('scss', function() {
@@ -59,6 +61,11 @@ gulp.task('js', function() {
     .pipe(babel())
     .pipe(concat('app.js'))
     .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('deploy', function() {
+  return gulp.src('dist/**/*')
+    .pipe(ghPages());
 });
 
 gulp.task('clean', function(cb) {
