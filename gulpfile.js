@@ -42,6 +42,7 @@ gulp.task('reload', function() {
 
 gulp.task('scss', function() {
   return gulp.src('src/css/main.scss')
+    .on('error', swallowError)
     .pipe(sass().on('error', sass.logError))
     .pipe(rename('main.css'))
     .pipe(autoprefixer({
@@ -59,6 +60,7 @@ gulp.task('html', function() {
 gulp.task('js', function() {
   return gulp.src(sourceFiles.allJs)
     .pipe(babel())
+    .on('error', swallowError)
     .pipe(concat('app.js'))
     .pipe(gulp.dest('dist/js'));
 });
@@ -71,3 +73,8 @@ gulp.task('deploy', function() {
 gulp.task('clean', function(cb) {
   return del('dist', cb);
 });
+
+function swallowError(error) {
+  console.log(error.toString());
+  this.emit('end');
+}
