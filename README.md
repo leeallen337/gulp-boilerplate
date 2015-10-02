@@ -13,6 +13,7 @@ The following plugins are installed:
 * [del](https://www.npmjs.com/package/del)
 * [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages/)
 
-`npm install` to install packages.
-
-`npm run gulp` to run gulp.
+```
+npm install
+npm run gulp
+```
