@@ -8,18 +8,22 @@ var concat = require('gulp-concat');
 var del = require('del');
 var ghPages = require('gulp-gh-pages');
 
+// Basic file structure
 var sourceFiles = {
   allHtml:  'src/**/*.html',
   allJs:    'src/**/*.js',
   allScss:  'src/**/*.scss'
 };
 
+// Default task
 gulp.task('default', ['build', 'watch', 'serve']);
 
+// Initial build which first cleans the dist folder
 gulp.task('build', ['clean'], function() {
   gulp.start(['js', 'scss', 'html']);
 });
 
+// Watchings various directories for changes and then reloads the browser
 gulp.task('watch', function() {
   gulp.watch(sourceFiles.allHtml, ['html']);
   gulp.watch(sourceFiles.allJs, ['js']);
@@ -27,19 +31,22 @@ gulp.task('watch', function() {
   gulp.watch('dist/**/*', ['reload']);
 });
 
+// Serves the dist file path to the browser
 gulp.task('serve', function() {
   connect.server({
-    root: './dist',
+    root: 'dist',
     port: 8000,
     livereload: true
   });
 });
 
+// Reloads the browser with the dist file path as the source files
 gulp.task('reload', function() {
   gulp.src('dist/**/*')
     .pipe(connect.reload());
 });
 
+// CSS task
 gulp.task('scss', function() {
   return gulp.src('src/css/main.scss')
     .on('error', swallowError)
@@ -52,11 +59,13 @@ gulp.task('scss', function() {
     .pipe(gulp.dest('dist/css'));
 });
 
+// HTML task
 gulp.task('html', function() {
   return gulp.src(sourceFiles.allHtml)
     .pipe(gulp.dest('dist'));
 });
 
+// JavaScript task
 gulp.task('js', function() {
   return gulp.src(sourceFiles.allJs)
     .pipe(babel())
@@ -65,15 +74,18 @@ gulp.task('js', function() {
     .pipe(gulp.dest('dist/js'));
 });
 
+// Deploys the dist files to gh-pages
 gulp.task('deploy', function() {
   return gulp.src('dist/**/*')
     .pipe(ghPages());
 });
 
+// Cleans the distribution directory
 gulp.task('clean', function(cb) {
   return del('dist', cb);
 });
 
+// Prevent gulp from crashing on errors
 function swallowError(error) {
   console.log(error.toString());
   this.emit('end');
