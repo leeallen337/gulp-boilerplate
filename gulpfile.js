@@ -62,7 +62,7 @@ gulp.task('scss', function() {
 // HTML task
 gulp.task('html', function() {
   return gulp.src(sourceFiles.allHtml)
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/html'));
 });
 
 // JavaScript task
