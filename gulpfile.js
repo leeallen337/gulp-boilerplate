@@ -7,6 +7,7 @@ var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var del = require('del');
 var ghPages = require('gulp-gh-pages');
+var uglify = require('gulp-uglify');
 
 // Basic file structure
 var sourceFiles = {
@@ -71,6 +72,9 @@ gulp.task('js', function() {
     .pipe(babel())
     .on('error', swallowError)
     .pipe(concat('app.js'))
+    .pipe(gulp.dest('dist/js'))
+    .pipe(uglify())
+    .pipe(rename('app.min.js'))
     .pipe(gulp.dest('dist/js'));
 });
 

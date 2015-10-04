@@ -12,6 +12,7 @@ The following plugins are installed:
 * [gulp-concat](https://www.npmjs.com/package/gulp-concat/)
 * [del](https://www.npmjs.com/package/del)
 * [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages/)
+* [gulp-uglify](https://www.npmjs.com/package/gulp-uglify/)
 
 ```
 npm install
