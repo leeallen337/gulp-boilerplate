@@ -8,6 +8,7 @@ var concat = require('gulp-concat');
 var del = require('del');
 var ghPages = require('gulp-gh-pages');
 var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 
 // Basic file structure
 var sourceFiles = {
@@ -69,12 +70,14 @@ gulp.task('html', function() {
 // JavaScript task
 gulp.task('js', function() {
   return gulp.src(sourceFiles.allJs)
+    .pipe(sourcemaps.init())
     .pipe(babel())
     .on('error', swallowError)
     .pipe(concat('app.js'))
     .pipe(gulp.dest('dist/js'))
     .pipe(uglify())
     .pipe(rename('app.min.js'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/js'));
 });
 

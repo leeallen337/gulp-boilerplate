@@ -13,6 +13,7 @@ The following plugins are installed:
 * [del](https://www.npmjs.com/package/del)
 * [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages/)
 * [gulp-uglify](https://www.npmjs.com/package/gulp-uglify/)
+* [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps/)
 
 ```
 npm install
