@@ -18,4 +18,5 @@ The following plugins are installed:
 ```
 npm install
 npm run gulp
+npm run gulp -- deploy
 ```
