@@ -97,7 +97,7 @@ gulp.task('font', function() {
     .pipe(gulp.dest('dist'));
 });
 
-// Deploys the dist files to gh-pages
+// Deploys the dist files to gh-pages by running 'npm run gulp -- deploy'
 gulp.task('deploy', function() {
   return gulp.src('dist/**/*')
     .pipe(ghPages());
