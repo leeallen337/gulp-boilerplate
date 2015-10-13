@@ -36,7 +36,7 @@ gulp.task('watch', function() {
   gulp.watch(sourceFiles.allScss, ['scss']);
   gulp.watch(sourceFiles.allImg, ['img']);
   gulp.watch(sourceFiles.allFont, ['font']);
-  gulp.watch('dist/**/*', ['reload']);
+  gulp.watch('dist/**/**/**/*', ['reload']);
 });
 
 // Serves the dist file path to the browser
@@ -50,7 +50,7 @@ gulp.task('serve', function() {
 
 // Reloads the browser with the dist file path as the source files
 gulp.task('reload', function() {
-  gulp.src('dist/**/*')
+  gulp.src('dist')
     .pipe(connect.reload());
 });
 
