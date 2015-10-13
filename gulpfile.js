@@ -12,11 +12,12 @@ var uglify = require('gulp-uglify');
 
 // Basic file structure
 var sourceFiles = {
-  allHtml:  'src/**/*.html',
-  allJs:    'src/**/*.js',
-  allScss:  'src/**/*.scss',
-  allImg:   'src/**/*.{jpg,png,svg,gif,ico}',
-  allFont:  'src/**/*.{ttf,woff,otf,eot}'
+  allHtml:      'src/**/*.html',
+  allAppJs:     'src/js/app/**/*.js',
+  allVendorJs:  'src/js/vendor/**/*.js',
+  allScss:      'src/**/*.scss',
+  allImg:       'src/**/*.{jpg,png,svg,gif,ico}',
+  allFont:      'src/**/*.{ttf,woff,otf,eot}'
 };
 
 // Default task
@@ -24,13 +25,14 @@ gulp.task('default', ['build', 'watch', 'serve']);
 
 // Initial build which first cleans the dist folder
 gulp.task('build', ['clean'], function() {
-  gulp.start(['html', 'js', 'scss', 'img', 'font']);
+  gulp.start(['html', 'appjs', 'vendorjs', 'scss', 'img', 'font']);
 });
 
 // Watchings various directories for changes and then reloads the browser
 gulp.task('watch', function() {
   gulp.watch(sourceFiles.allHtml, ['html']);
-  gulp.watch(sourceFiles.allJs, ['js']);
+  gulp.watch(sourceFiles.allAppJs, ['appjs']);
+  gulp.watch(sourceFiles.allVendorJs, ['vendorjs']);
   gulp.watch(sourceFiles.allScss, ['scss']);
   gulp.watch(sourceFiles.allImg, ['img']);
   gulp.watch(sourceFiles.allFont, ['font']);
@@ -58,18 +60,25 @@ gulp.task('html', function() {
     .pipe(gulp.dest('dist'));
 });
 
-// JavaScript task
-gulp.task('js', function() {
-  return gulp.src(sourceFiles.allJs)
+// JavaScript application files task
+gulp.task('appjs', function() {
+  return gulp.src(sourceFiles.allAppJs)
     .pipe(sourcemaps.init())
     .pipe(babel())
     .on('error', swallowError)
     .pipe(concat('app.js'))
-    .pipe(gulp.dest('dist/js'))
+    .pipe(gulp.dest('dist/js/app'))
     .pipe(uglify())
     .pipe(rename('app.min.js'))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('dist/js/app'));
+});
+
+// JavaScript vendor files task
+gulp.task('vendorjs', function() {
+  return gulp.src(sourceFiles.allVendorJs)
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest('dist/js/vendor'));
 });
 
 // CSS task
