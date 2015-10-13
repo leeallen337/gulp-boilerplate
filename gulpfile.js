@@ -13,7 +13,7 @@ var uglify = require('gulp-uglify');
 // Basic file structure
 var sourceFiles = {
   allHtml:      'src/**/*.html',
-  allAppJs:     'src/js/app/**/*.js',
+  allAppJs:     'src/js/app/*.js',
   allVendorJs:  'src/js/vendor/*.js',
   allScss:      'src/**/*.scss',
   allImg:       'src/**/*.{jpg,png,svg,gif,ico}',
