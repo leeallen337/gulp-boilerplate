@@ -22,3 +22,8 @@ npm install
 npm run gulp
 npm run gulp -- deploy
 ```
+
+To live reload point your browser to
+```
+localhost:8000
+```
