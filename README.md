@@ -4,7 +4,7 @@ This is a boilerplate Gulp file that can hopefully be used as a starting point f
 
 The following plugins are installed:
 
-
+* [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015)
 * [del](https://www.npmjs.com/package/del)
 * [gulp](http://gulpjs.com)
 * [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer/)
@@ -23,7 +23,4 @@ npm run gulp
 npm run gulp -- deploy
 ```
 
-To live reload point your browser to
-```
-localhost:8000
-```
+To live reload point your browser to ```localhost:8000```
