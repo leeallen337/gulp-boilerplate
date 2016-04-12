@@ -1,4 +1,4 @@
-#Gulp Base
+#Gulp Boilerplate
 
 This is a boilerplate Gulp file that can hopefully be used as a starting point for any project.
 

@@ -104,8 +104,10 @@ gulp.task('deploy', function() {
 });
 
 // Cleans the distribution directory
-gulp.task('clean', function(cb) {
-  return del('dist', cb);
+gulp.task('clean', function() {
+  return del(['dist']).then(function(paths) {
+    console.log('Deleted files and folders:\n', paths.join('\n'));
+  });
 });
 
 // Prevent gulp from crashing on errors
