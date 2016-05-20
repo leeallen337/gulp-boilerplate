@@ -19,7 +19,7 @@ var sourceFiles = {
   allFont:  'src/**/*.{ttf,woff,otf,eot}'
 };
 
-// Default task
+// Default task: 'npm run gulp'
 gulp.task('default', ['build', 'watch', 'serve']);
 
 // Initial build which first cleans the dist folder
@@ -27,7 +27,7 @@ gulp.task('build', ['clean'], function() {
   gulp.start(['html', 'js', 'scss', 'img', 'font']);
 });
 
-// Watchings various directories for changes and then reloads the browser
+// Watches various directories for changes and then reloads the browser
 gulp.task('watch', function() {
   gulp.watch(sourceFiles.allHtml, ['html']);
   gulp.watch(sourceFiles.allJs, ['js']);
