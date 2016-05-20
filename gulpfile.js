@@ -52,6 +52,12 @@ gulp.task('reload', function() {
     .pipe(connect.reload());
 });
 
+/**
+  * Note that gulp preserves the file structure but adding on additional
+  * plugins can destroy the file structure which is why for the js and scss
+  * task the end file needs to be piped to the correct folder structure
+  */
+
 // HTML task
 gulp.task('html', function() {
   return gulp.src(sourceFiles.allHtml)
